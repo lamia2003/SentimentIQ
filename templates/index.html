@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentimentIQ Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='sentiment-iq-high-resolution-logo.png') }}" alt="Sentiment IQ Logo" class="logo">
+        <h1>SentimentIQ - Reddit Comment Analysis</h1>
+    </header>
+
+    {% if error %}
+    <div class="error-message">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    <div class="search-section">
+        <!-- Subreddit Search Form -->
+        <form action="/analyze_comments" method="get">
+            <label for="subreddit">Enter Subreddit Name:</label>
+            <input type="text" id="subreddit" name="subreddit" placeholder="e.g. python, worldnews" required>
+            
+            <label for="post_type">Select Post Type:</label>
+            <select name="post_type" id="post_type">
+                <option value="top">Top Posts</option>
+                <option value="new">Recent Posts</option>
+                <option value="hot">Hot Posts</option>
+                <option value="rising">Rising Posts</option>
+            </select>
+            
+            <button type="submit" style="margin-left: 10px;">Analyze</button>
+        </form>
+    </div>
+
+    <!-- Overall Sentiment Section -->
+    {% if avg_sentiment %}
+    <div class="overall-sentiment">
+        <h2>Overall Sentiments</h2>
+        <strong>Subreddit:</strong> 
+        <a href="https://www.reddit.com/r/{{ subreddit }}" target="_blank">r/{{ subreddit }}</a>
+        <div>
+            <canvas id="sentimentPieChart"></canvas>
+            <ul>
+                <li>Positive: {{ avg_sentiment['pos'] }}</li>
+                <li>Neutral: {{ avg_sentiment['neu'] }}</li>
+                <li>Negative: {{ avg_sentiment['neg'] }}</li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% include 'detailed_analysis.html' %}
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ctx = document.getElementById('sentimentPieChart').getContext('2d');
+        var sentimentPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Positive', 'Neutral', 'Negative'],
+                datasets: [{
+                    label: 'Sentiment Distribution',
+                    data: [
+                        parseFloat('{{ avg_sentiment["pos"]|replace("%", "") }}'),
+                        parseFloat('{{ avg_sentiment["neu"]|replace("%", "") }}'),
+                        parseFloat('{{ avg_sentiment["neg"]|replace("%", "") }}')
+                    ],
+                    backgroundColor: [
+                        '#4CAF50',  // Green for positive
+                        '#9E9E9E',  // Gray for neutral
+                        '#F44336'   // Red for negative
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(1) + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+</html>

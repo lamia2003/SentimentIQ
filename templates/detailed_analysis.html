@@ -1,0 +1,32 @@
+<!-- templates/detailed_analysis.html -->
+{% if results %}
+<div class="detailed-analysis">
+    <h2>Detailed Comment Analysis</h2>
+    <ul>
+        {% for result in results %}
+        <li class="comment-card">
+            <p><strong>Comment:</strong> {{ result['comment'] }} <br></p>
+            <strong>Sentiment:</strong>
+            <ul class="sentiment-list">
+                <li>
+                    <span class="icon positive">&#x1F44D;</span>  <!-- Thumbs Up Icon -->
+                    Positive: <span class="positive">{{ (result['sentiment']['pos'] * 100) | round(1) }}%</span>
+                </li>
+                <li>
+                    <span class="icon neutral">&#x1F610;</span>  <!-- Neutral Face Icon -->
+                    Neutral: <span class="neutral">{{ (result['sentiment']['neu'] * 100) | round(1) }}%</span>
+                </li>
+                <li>
+                    <span class="icon negative">&#x1F44E;</span>  <!-- Thumbs Down Icon -->
+                    Negative: <span class="negative">{{ (result['sentiment']['neg'] * 100) | round(1) }}%</span>
+                </li>
+                <li>
+                    <span class="icon compound">&#x1F4C8;</span>  <!-- Chart Icon -->
+                    Compound: <span class="compound">{{ result['sentiment']['compound'] | round(2) }}</span>
+                </li>
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

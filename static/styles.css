@@ -1,0 +1,144 @@
+/* Global styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;  /* This affects overall text alignment */
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 50px;  /* Logo now properly resized */
+    margin-right: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Subreddit Search Form */
+.search-section {
+    padding: 20px;
+    background-color: #00E6C2;
+}
+
+.search-section form {
+    display: inline-block;
+}
+
+.search-section input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 250px;
+    margin-right: 10px;
+}
+
+.search-section button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #00796B;
+    color: white;
+    cursor: pointer;
+}
+
+.search-section button:hover {
+    background-color: #005A4F;
+}
+
+.overall-sentiment {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px; /* Optional: Set a max-width for larger screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center; /* Center content within the section */
+}
+
+#sentimentPieChart {
+    max-width: 350px; /* Adjust as needed */
+    max-height: 350px; /* Adjust as needed */
+    width: 100%;
+    height: auto;
+    display: block; /* Ensures the canvas is treated as a block element */
+    margin: 0 auto; /* Center the canvas horizontally */
+    align-items: center;
+}
+
+/* Align detailed analysis to the left */
+.detailed-analysis {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* Remove the dots from the list */
+ul {
+    list-style-type: none; /* Removes the default bullet points */
+    padding-left: 0;        /* Removes left padding */
+}
+
+.comment-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-card ul li {
+    margin-bottom: 5px;
+}
+
+.comment-card p {
+    margin-bottom: 15px;  /* Adjust as necessary */
+}
+
+/* Icon styling */
+.icon {
+    margin-right: 8px;
+}
+
+/* Positive sentiment - green */
+.positive {
+    color: #4CAF50;
+}
+
+/* Neutral sentiment - gray */
+.neutral {
+    color: #9E9E9E;
+}
+
+/* Negative sentiment - red */
+.negative {
+    color: #F44336;
+}
+
+/* Compound sentiment - color based on value */
+.compound {
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin: 20px 0;
+}
