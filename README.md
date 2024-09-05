@@ -1,5 +1,9 @@
 # SentimentIQ
-SentimentIQ is a powerful sentiment analysis tool designed to monitor and analyze user opinions on Reddit. Leveraging natural language processing (NLP), SentimentIQ collects and processes data from Reddit posts and comments, providing real-time insights into the sentiment around specific brands, products, or topics.
+Whether you're interested in tracking public opinions about emerging trends, or understanding customer feedback on a product, SentimentIQ gives you the tools to analyze sentiment data efficiently and visually.
+
+Using a combination of VADER Sentiment Analysis and the Reddit API (PRAW), SentimentIQ delivers an easy-to-use interface where users can search for subreddits, select post types, and instantly get a breakdown of the sentiment in the comments, displayed in an interactive pie chart.
+
+
 
 **Demo:** 
 
